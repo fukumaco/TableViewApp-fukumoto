@@ -80,10 +80,15 @@ class TableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            taskArray.remove(at:indexPath.row)
-        } else if editingStyle == .insert {
+
+            //taskArray内のindexPathのrow番目をremove（消去）する
+            taskArray.remove(at: indexPath.row)
+            //再びアプリ内に消去した配列を保存
+            UserDefaults.standard.set(taskArray, forKey: "add")
+
+            //tableViewを更新
+            tableView.reloadData()
+    }else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             
         }

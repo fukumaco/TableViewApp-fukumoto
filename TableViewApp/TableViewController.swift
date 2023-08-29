@@ -35,6 +35,7 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    
     // MARK: - Table view data source
     //　セクションの数を返す
     
@@ -81,9 +82,12 @@ class TableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            taskArray.remove(at:indexPath.row)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }
+        
     }
     
     
@@ -111,19 +115,19 @@ class TableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    /*
-     override func viewWillAppear(_ animated: Bool) {
-     super.viewWillAppear(animated)
-     let userDefaults = UserDefaults.standard
-     
-     //"add"というキーで保存された値がなにかある -> 値をtaskArrayへ
-     if userDefaults.object(forKey: "add") != nil {
-     taskArray = userDefaults.object(forKey: "add") as! [String]
-     }
-     //tableViewを更新
-     tableView.reloadData()
-     */
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let userDefaults = UserDefaults.standard
+        
+        //"add"というキーで保存された値がなにかある -> 値をtaskArrayへ
+        if userDefaults.object(forKey: "add") != nil {
+            taskArray = userDefaults.object(forKey: "add") as! [String]
+        }
+        //tableViewを更新
+        tableView.reloadData()
+        
+        
+    }
 }
     
